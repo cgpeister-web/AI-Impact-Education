@@ -37,3 +37,17 @@ The command template in RUNNING_MODELS.md must be customized to the actual datas
 - [Setup and reproducibility instructions](RUNNING_MODELS.md)
 
 This observational survey may identify associations, not causal harms or proof of cheating. Only commit data permitted by its license, and report results only after running the models.
+
+
+## Verified-dataset reproduction workflow (October 2026)
+
+The group proposal selects Wickberg Hugerth's 1,266-response Swedish secondary-school survey ([dataset DOI](https://doi.org/10.17045/STHLMUNI.28850645)). The script `src/reproduce_study.py` reads the **original 28850645.zip** directly, including the CSV's double-quoted wrapper. No manually normalized CSV is required.
+
+```bash
+python -m pip install -r requirements.txt
+python -m src.reproduce_study --zip 28850645.zip --out results
+```
+
+The source ZIP is **not committed**; download it from the DOI and keep it in the project directory. The program writes `results/model_comparison.csv`, `results/methodology.json`, and comparison/confusion-matrix figures. The local working analysis (not a CI run) previously returned 1,230 eligible responses, using `Use_school` 1-2 as high and 3-5 as low frequency; 0/unknown and blanks were excluded. The target binning is an analytical choice and should be explained in the report.
+
+**Research caution:** This is a Swedish school survey, despite the earlier one-line repository description mentioning the U.S. It predicts survey-reported frequency, not actual academic dishonesty or whether AI *caused* adverse effects. Document genuine group contributions and disclose any AI support as required by the course.
