@@ -1,0 +1,12 @@
+# Never commit private respondent-level survey files without permission
+data/*.csv
+data/*.xlsx
+data/*.sav
+data/*.zip
+!data/README.md
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
+results/
